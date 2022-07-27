@@ -57,6 +57,7 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<ISaltnPepperRepository, SaltnPepperRepository>();
 builder.Services.AddScoped<ITowerRepository, TowersRepository>();
 builder.Services.AddScoped<IBetsRepository, BetsRepository>();
+builder.Services.AddScoped<ITenziesRepository, TenziesRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 // JWT PART
 var tokenKey = builder.Configuration["TOKEN_KEY"];

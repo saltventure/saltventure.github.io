@@ -23,14 +23,14 @@ public class TowersRepository : ITowerRepository
 
     public async Task<Tower> GetActiveGame(int claimedId)
     {
-          return await _context.TowersGames
-            .Include(c => c.Bet.User)
-            .OrderBy(c => c.Id).LastOrDefaultAsync(g => g.User.Id == claimedId && !g.IsCompleted);
+          return (await _context.TowersGames!
+            .Include(c => c.Bet!.User)
+            .OrderBy(c => c.Id).LastOrDefaultAsync(g => g!.User!.Id == claimedId && !g.IsCompleted))!;
     }
 
     public async Task<Tower> GetGame(int gameId)
     {
-        return await _context.TowersGames.FirstOrDefaultAsync(g => g.Id == gameId);
+        return (await _context.TowersGames!.FirstOrDefaultAsync(g => g.Id == gameId))!;
 
     }
 

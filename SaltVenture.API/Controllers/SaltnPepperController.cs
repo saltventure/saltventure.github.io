@@ -121,7 +121,7 @@ public class SaltnPepperController : ControllerBase
         var game = await _saltnPepperRepository.GetActiveGame(claimedId);
         if (game == null) return NotFound();
 
-        if (game.Grid[position] == 'x') return BadRequest("Stop Cheating! :)");
+        if (game.Grid![position] == 'x') return BadRequest("Stop Cheating! :)");
         if (SaltnPepperLogic.IsGameOver(game.Grid!, position))
         {
             //TODO: end game

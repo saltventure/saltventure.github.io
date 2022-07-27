@@ -134,7 +134,7 @@ public class TowerController : ControllerBase
         }
         else
         {
-            game.Grid = TowerLogic.PickPosition(game.Grid,position,game.Floor,TowerLogic.GetFloorSize(game.Level));
+            game.Grid = TowerLogic.PickPosition(game.Grid!,position,game.Floor,TowerLogic.GetFloorSize(game.Level));
             game.Floor++;
             game = await _towersRepository.UpdateGame(game);
             var bet = game.Bet;
