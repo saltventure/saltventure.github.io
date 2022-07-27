@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'SaltVenture'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BBFEE50ABF124F489C9229BC4CF88266 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BC8EC763C6B440AB8A1E35030E183058 }}
           package: .
