@@ -101,7 +101,7 @@ function Rank({ user }: Props) {
                     {data.map((user) => {
                         return (
                             <>
-                                <Link className='rank-list-item' to={`/salt-venture/profile/${user.id}`}>
+                                <Link className='rank-list-item' to={`/profile/${user.id}`}>
                                     <FaUserAlt className='rank-list-item-img' />
                                     <div className="rank-list-item-info">
                                         <p className='rank-list-item__username'>{user.username}</p>

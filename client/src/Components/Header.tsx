@@ -19,7 +19,7 @@ interface Props {
 function Header({ user, logOut }: Props) {
     const navigate = useNavigate();
     const navigteToSignIn = () => {
-        navigate('/salt-venture/login');
+        navigate('/login');
     };
     return (
         <>

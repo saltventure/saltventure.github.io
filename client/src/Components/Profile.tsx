@@ -90,7 +90,7 @@ function Profile({ user }: Props) {
             <>
                 {id == undefined || user.id.toString() == id ?
                     <div className='profile-edit__wrapper'>
-                        <Link to="/salt-venture/profile/edit" ><FaPencilRuler
+                        <Link to="/profile/edit" ><FaPencilRuler
                             className="profile-edit__button" /></Link>
                     </div>
                     : <></>

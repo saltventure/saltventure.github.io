@@ -141,7 +141,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
                 : <></>}
 
             <div className='profile-edit__wrapper'>
-                <Link to="/salt-venture/profile/" ><FaPencilRuler
+                <Link to="/profile/" ><FaPencilRuler
                     className="profile-edit__button--active" /></Link>
             </div>
             <></>

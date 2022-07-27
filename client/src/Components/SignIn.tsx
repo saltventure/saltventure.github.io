@@ -41,7 +41,7 @@ function SignIn({updateUser}:Props) {
 
     const navigate = useNavigate();
     const navigteToSignUp = () => {
-        navigate('/salt-venture/');
+        navigate('/');
     };
     const sendSignIn = async (e) => {
         setIsLoading(true);
@@ -77,7 +77,7 @@ function SignIn({updateUser}:Props) {
 
             console.log(deserializedJSON);
             updateUser(deserializedJSON);
-            navigate('/salt-venture/');
+            navigate('/');
         } catch (err) {
             setIsLoading(false);
             if(err.message === "")
@@ -156,7 +156,7 @@ function SignIn({updateUser}:Props) {
                     <FaApple /> Log In with Apple
                 </button>
             </div>
-            <p className='sign-up__link'>New Here? <Link to="/salt-venture/signup">Sign Up!</Link></p>
+            <p className='sign-up__link'>New Here? <Link to="/signup">Sign Up!</Link></p>
         </div>
     );
 }
