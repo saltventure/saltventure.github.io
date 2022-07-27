@@ -44,13 +44,11 @@ function Rank({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON)
             setIsLoading(false);
 
             setData(deserializedJSON["$values"]);
         }
         catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {
@@ -67,6 +65,7 @@ function Rank({ user }: Props) {
             <hr className='rank-title-divider' />
             <div className='rank-list'>
                 <div className='rank-list-item loading loading-rank-list-item'>
+                
                 </div>
                 <div className='rank-list-item loading loading-rank-list-item'>
                 </div>
@@ -125,9 +124,7 @@ function Rank({ user }: Props) {
             </label>
             <hr className='rank-title-divider' />
             <div className='rank-list'>
-                <div className='rank-list-item'>
                     <div className="no-user">No User Found</div>
-                </div>
             </div>
         </div>
     )

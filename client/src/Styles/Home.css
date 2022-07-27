@@ -85,11 +85,24 @@
 .footer {
     margin-top: 40px;
     text-align: center;
-    color: #8C8A93;;
-    font-weight: 100;
+    color: #ACAAB3;;
+    font-weight: 300;
     font-size: 18px;
 
 }
 .new-here-home {
     margin-top: 50px;
+}
+
+@media screen and (min-width: 850px) {
+    .home-screen {
+        width: 95%;
+    }
+    .home-screen h4{
+        font-size: 22px;
+        margin: 10px 0 10px 20px;
+      
+    }
+
+    
 }

@@ -131,7 +131,6 @@ function Tower({ user, updateUser }: Props) {
             }
             setMultiplier(deserializedJSON.bet.multiplier);
 
-            console.log(deserializedJSON)
             setTower({currentFloor:deserializedJSON.floor, floors:floors});
            
 
@@ -174,7 +173,6 @@ function Tower({ user, updateUser }: Props) {
             }
             //TODO: set current Game
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON)
             const grid = deserializedJSON.gridResponse.split("");
 
             setMultiplier(deserializedJSON.bet.multiplier);
@@ -360,13 +358,13 @@ function Tower({ user, updateUser }: Props) {
             <div className='game-input-wrapper'>
                 <label className='game-input-field'>
                     <p>Level</p>
-                    <select className='input-button-snp' name='pepper' id="pepper" onChange={(e) => {
-                        setLevel(e.target.value)
+                    <select className='input-button-snp tower-level-select' name='pepper' id="pepper" onChange={(e) => {
+                        setLevel("-1");setLevel(e.target.value)
                     }}>
                         {
                             levels.map((e, index) => {
                                 return (
-                                    <option key={index} className='drop-down-item' value={e.value}>{e.label}</option>
+                                    <option key={index} className='drop-down-item' value={e.value} selected={e.value.toString() === level}>{e.label} </option>
                                 )
                             })
                         }

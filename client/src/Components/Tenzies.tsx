@@ -104,12 +104,10 @@ const Tenzies = ({ user, updateUser }: Props)=> {
             throw new Error(JSON.stringify(await response.json()));
         }
         const deserializedJSON = await response.json();  
-        console.log(deserializedJSON);
         updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.balance, token: user.token })
 
     }
     catch (err) {
-        console.log(err);
     }
 }
 

@@ -44,9 +44,10 @@ function Admin({ user, logout }: Props) {
     const [labels, setLabels] = useState<any>([]);
     const [chartData, setChartData] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingUser, setIsLoadingUser] = useState(true);
     const [userData, setUserData] = useState<any>();
     const viewUser = async (id) => {
-        setIsLoading(true);
+        setIsLoadingUser(true);
         const requestSettings = {
             method: 'GET',
             headers: {
@@ -60,7 +61,6 @@ function Admin({ user, logout }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON.bets["$values"]);
             setUserData({
                 id: deserializedJSON.id,
                 username: deserializedJSON.username,
@@ -70,14 +70,13 @@ function Admin({ user, logout }: Props) {
             });
             setIsSeeingUser(true);
 
-            setIsLoading(false);
+            setIsLoadingUser(false);
 
         }
         catch (err) {
             setIsSeeingUser(true);
 
-            setIsLoading(false);
-            console.log(err);
+            setIsLoadingUser(false);
         }
     }
     const deleteUser = async (id) => {
@@ -98,7 +97,6 @@ function Admin({ user, logout }: Props) {
             getUsers();
         }
         catch (err) {
-            console.log(err);
         }
     }
     const getUsers = async () => {
@@ -124,7 +122,6 @@ function Admin({ user, logout }: Props) {
             let templabels = [];
             let curLabel = 0;
             let objAsArr = Object.entries(deserializedJSON.usersMoneyRange);
-            console.log(objAsArr)
             for (const [key, value] of objAsArr) {
                 if (key == "$id") continue;
 
@@ -141,17 +138,41 @@ function Admin({ user, logout }: Props) {
             setLabels(templabels)
             setChartData(tempData);
             setData(deserializedJSON);
-            console.log(deserializedJSON);
         }
         catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {
         getUsers();
     }, [user])
     if (isLoading) {
-        return (<>Loading</>)
+        const loadingData = {
+            labels: [1,2,3,4,5],
+            datasets: [
+                {
+                    label: '',
+                    data: [1,2,3,4,5],
+                    backgroundColor: 'rgba(0,0,0,0)',
+                }
+            ]
+        }
+        return (<>
+            <div className='admin-page'>
+            <header className='admin-header'>
+                    <BiLogOut className='admin-button' onClick={logout} />
+                    <h1>Admin Page</h1>
+                </header>
+                <div className="admin-info-row">
+                    <h2 className='loading--light'>Salties Made: <br /> 00000</h2>
+                    <h2 className='loading--light'>Bets Made: <br /> 00000</h2>
+                    <h2 className='loading--light'>Total Users: <br /> 00000</h2>
+                    <h2 className='loading--light'>Active: <br />00000</h2>
+                </div>
+                <div className="admin-info-graph loading-admin-graph">
+                    <Bar data={loadingData}  />
+                </div>
+            </div>
+        </>)
     }
     const dataChart = {
         labels,
@@ -186,8 +207,8 @@ function Admin({ user, logout }: Props) {
                 <div className="admin-fraudulent-list">
                     <h2>Possible Frauds ({data.possibleFraudulentUSers["$values"].length}):</h2>
                     {data.possibleFraudulentUSers ? <>
-                        {data.possibleFraudulentUSers["$values"].map((e) => {
-                            return (<> <div className='admin-list-item'>
+                        {data.possibleFraudulentUSers["$values"].map((e,index) => {
+                            return (<> <div key={index} className='admin-list-item'>
                                 <div className="admin-list-item-info">
                                     <FaUserAlt className='rank-list-item-img' />
                                     <div className="rank-list-item-info">
@@ -207,13 +228,15 @@ function Admin({ user, logout }: Props) {
                 </div>
             </div>
             {
-                isSeeingUser && !isLoading ? <>
+                isSeeingUser ? <>
+                {!isLoadingUser ? 
+                <>
                     <div className="full-screen-cover" onClick={() => setIsSeeingUser(false)}></div>
                     <div className="admin-popup">
-                    <label className='search-bar-rank'>
-                <input type="number" name="search" onChange={(e) => {setSearchingId(parseInt(e.target.value))}} placeholder="Get User By Id" />
-                 <AiOutlineSearch onClick={() => viewUser(searchingId)} />
-            </label>
+                        <label className='search-bar-rank'>
+                            <input type="number" name="search" onChange={(e) => { setSearchingId(parseInt(e.target.value)) }} placeholder="Get User By Id" />
+                            <AiOutlineSearch onClick={() => viewUser(searchingId)} />
+                        </label>
                         <div className="admin-popup-info">
                             <h2>{userData.username}</h2>
                             <h2 className='admin-currency'><TbSalt className='salt-balance__icon salt-shaker' />{userData.balance}</h2>
@@ -225,18 +248,20 @@ function Admin({ user, logout }: Props) {
                                 let multiplierClass = "";
                                 if (b.multiplier < 1) multiplierClass = "multiplier-red"
                                 if (b.multiplier > 2) multiplierClass = "multiplier-green"
-                                    return (<div className='admin-bet-list-item'>
-                                        <img src={b.game == 0 ? SaltnPepper : "https://mediumrare.imgix.net/2c3e16f0a3b8cd8d979265e48dd6a169937a4a4d0acb05ad532ca8345a1e6f21?q=85"} alt="Game" className='admin-bet-list-item__img' />
-                                        <p className="admin-list-item-amount-info">
-                                            {b.amount} x <span className={`admin-multiplier-span ${multiplierClass}`}>{b.multiplier}</span>
-                                        </p>
-                                    </div>)
+                                return (<div className='admin-bet-list-item'>
+                                    <img src={b.game == 0 ? SaltnPepper : "https://mediumrare.imgix.net/2c3e16f0a3b8cd8d979265e48dd6a169937a4a4d0acb05ad532ca8345a1e6f21?q=85"} alt="Game" className='admin-bet-list-item__img' />
+                                    <p className="admin-list-item-amount-info">
+                                        {b.amount} x <span className={`admin-multiplier-span ${multiplierClass}`}>{b.multiplier}</span>
+                                    </p>
+                                </div>)
                             })}
 
                         </div>
                         <button className='admin-bet-list--delete' onClick={() => deleteUser(userData.id)}>Delete</button>
 
                     </div>
+                    </> : <></>
+            }
                 </> : <></>
             }
 

@@ -96,9 +96,7 @@ function SaltandPepper({ user, updateUser }: Props) {
                 }
                 );
             })
-            console.log(boxesFromFetch)
             setBoxes({ boxesList: boxesFromFetch, changes: 0 });
-            console.log(deserializedJSON)
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
         }
@@ -118,7 +116,6 @@ function SaltandPepper({ user, updateUser }: Props) {
             BetAmount: betAmount,
             PepperAmount: parseInt(peppers)
         })
-        console.log(body)
         const requestSettings = {
             method: 'POST',
             headers: {
@@ -147,13 +144,11 @@ function SaltandPepper({ user, updateUser }: Props) {
                 }
                 );
             })
-            console.log(deserializedJSON)
             setBoxes({ boxesList: boxesFromFetch, changes: 0 });
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
         }
         catch (err) {
-            console.log(err);
         }
 
 
@@ -196,7 +191,6 @@ function SaltandPepper({ user, updateUser }: Props) {
             else {
                 setMultiplier(deserializedJSON.bet.multiplier);
             }
-            console.log(deserializedJSON)
             setBoxes({ boxesList: boxesFromFetch, changes: boxes.changes + 1 });
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
@@ -206,7 +200,6 @@ function SaltandPepper({ user, updateUser }: Props) {
             }
         }
         catch (err) {
-            console.log(err);
         }
 
 
@@ -254,7 +247,6 @@ function SaltandPepper({ user, updateUser }: Props) {
 
         }
         catch (err) {
-            console.log(err);
         }
     }
 
@@ -297,12 +289,12 @@ function SaltandPepper({ user, updateUser }: Props) {
                             <label className='game-input-field'>
                                 <p>Peppers</p>
                                 <select className='input-button-snp' name='pepper' id="pepper" onChange={(e) => {
-                                    setPeppers(e.target.value)
+                                    setPeppers("-1");setPeppers(e.target.value)
                                 }}>
                                     {
                                         options.map((e, index) => {
                                             return (
-                                                <option key={index} className='drop-down-item' value={e.value}>{e.label}</option>
+                                                <option key={index} className='drop-down-item' value={e.value} selected={e.value.toString() == peppers}>{e.label}</option>
                                             )
                                         })
                                     }

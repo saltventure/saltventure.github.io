@@ -51,7 +51,6 @@ function Profile({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON.bets["$values"]);
             setUserData({
                 id: deserializedJSON.id,
                 username: deserializedJSON.username,
@@ -59,10 +58,8 @@ function Profile({ user }: Props) {
                 balance: deserializedJSON.balance,
                 bets: [...deserializedJSON.bets["$values"],{game:-1,balance:deserializedJSON.balance}]
             });
-            console.log(deserializedJSON.bets["$values"].map((b, index) => b))
         }
         catch (err) {
-            console.log(err);
         }
     }
     if (user.id == undefined) {

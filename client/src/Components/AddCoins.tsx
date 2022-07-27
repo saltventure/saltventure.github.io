@@ -39,7 +39,6 @@ function AddCoins({ user, updateUser }: Props)  {
     
         }
         catch (err) {
-            console.log(err);
         }
     }
     

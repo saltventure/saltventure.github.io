@@ -69,7 +69,6 @@ function SignUp({ updateUser }: Props) {
             Username: e.target["username"].value,
             Email: e.target["email"].value
         })
-        console.log(body)
         const requestSettings = {
             method: 'POST',
             headers: myHeaders,
@@ -82,13 +81,11 @@ function SignUp({ updateUser }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON);
             updateUser(deserializedJSON);
             setIsLoading(false);
             navigate('/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
-            console.log(errors);
             if (errors.status == undefined) {
                 let passwordError = errors.Password ? errors.Password["$values"][0] : "";
                 let emailError = errors.Email ? errors.Email["$values"][0] : "";
@@ -118,7 +115,7 @@ function SignUp({ updateUser }: Props) {
                 <BsArrowLeft className='sign-up__back-btn' onClick={navigteToSignIn} />
                 <h2>Sign Up</h2>
             </div>
-            <h1 className='create-account'>Create<br />Account</h1>
+            <h1 className='create-account'>Create <br />Account</h1>
             <form onSubmit={sendSignUp}>
                 <label htmlFor="email" className='sign-up__label'>Email
                     <div className={"input-wrapper " + (error.Email !== "" && error.Email !== undefined ? "error__input" : "")}>

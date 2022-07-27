@@ -1,5 +1,6 @@
 .rank-list-item {
     display: flex;
+    box-sizing: border-box;
     justify-content: left;
     background-color: #2D2D2F;
     margin: 20px;
@@ -8,20 +9,10 @@
     text-decoration: none;
     border: 1px solid transparent;
     transition: 200ms;
-    width: 350px;
+    transition: width 0s;
+    width: 80vw;
+
 }
-@media only screen and (min-width: 600px) {
-    .rank-list{
-        width: 100%;
-        justify-content: center;
-    }
-    .rank-list-item {
-      width: 100%;
-    }
-    .rank-divider {
-        min-width: 500px;
-    }
-  }
 
 .rank-list-item-info {
     padding-left: 10px;
@@ -55,6 +46,10 @@
     font-size: 18px;
     color: #E1E1E6;
     margin-bottom: 0;
+    width: 50vw;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 .rank-list-item:hover {
@@ -70,9 +65,13 @@
 
 .rank-title-divider {
     margin: 20px;
-    color: red;
-    max-width: 350px;
+    width: 80vw;
+
     margin: 20px auto;
+
+    border: none;
+    height: 1px;
+    background-color: #4D4D4F;
 }
 
 .rank-divider {
@@ -87,9 +86,10 @@
     margin:auto;
     margin-top: 20px;
     border-radius: 10px;
-    width: fit-content;
     padding: 10px;
-    justify-content: center;
+    justify-content: space-between;
+    width: 70vw;
+
     background-color: #2D2D2F;
     border: 2px solid transparent;
     font-size: 24px;
@@ -124,10 +124,13 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .no-user {
-    background-color: transparent;
     display: flex;
+    background-color: #2D2D2F;
+    border-radius: 10px;
+    width: 80vw;
+    box-sizing: border-box;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
     margin: auto;
 }
 .loading-rank-list-item {
@@ -136,4 +139,23 @@ input[type="search"]::-webkit-search-results-decoration {
     background-repeat: no-repeat;
     background-image: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0));
     height: 50px;
+    color: transparent;
+    width: 80vw;
+
+}
+@media screen and (min-width:1000px) {
+
+    .rank-list-item , .loading-rank-list-item, .no-user, .rank-title-divider{
+        width: 800px;
+    }
+    .search-bar-rank {
+        width: 750px;
+        
+    }
+    .search-bar-rank input {
+        font-size: 20px;
+    }
+.rank-list-item__username {
+    width: 600px;
+}
 }

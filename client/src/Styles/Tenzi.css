@@ -2,17 +2,17 @@
     height: 400px;
     width: 400px;
     border-radius: 5px;
-    padding-right: 50px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     margin: auto;
     margin-top: 100px;
-  background-color: rgb(67, 53, 53);
-  border: 2px solid;
-  border-color: #f25e5e47;
-  border-radius: 10px;
+    background-color: rgb(67, 53, 53);
+    border: 2px solid;
+    border-color: #f25e5e47;
+    border-radius: 10px;
 }
 
 .title {
@@ -73,6 +73,7 @@
 .roll-dice:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+
 .reward-button {
     display: flex;
     justify-content: center;
@@ -88,9 +89,44 @@
     margin-top: -10px;
     cursor: pointer;
 }
+
 .reward-button:disabled,
-.reward-button[disabled]{
-  border: 1px solid #922626;
-  background-color: #836d6d;
-  color: #29d8de;
+.reward-button[disabled] {
+    border: 1px solid #922626;
+    background-color: #836d6d;
+    color: #29d8de;
+}
+
+@media only screen and (max-width: 654px) {
+    .main {
+        width: 300px;
+        display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    }
+    
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dice-container {
+    display: grid;
+    grid-template: auto auto / repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+}
+.die-face {
+    height: 50px;
+    width: 50px;
+}
+
+.die-num {
+    font-size: 1.7rem;
+}
+.roll-dice {
+    margin-right: 25px;
+}
 }
