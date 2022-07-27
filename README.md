@@ -26,3 +26,12 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
   
 </div>
+
+<hr />
+<div align=center>
+  <p>
+    This Project was made in two weeks as a graduation project at <a href="http://salt.dev">School of Applied Technology</a> <br />
+  Salt venture is a free gambling website where there is no real money involved, instead you compete with your friends to see who can accumulate the most points, or “salties” as we call it. This is also great for gambling companies to try out their games. Where they can track earnings, popularity, betting amounts, games return to player ratings, and overall feedback.
+  </p>
+
+</div>
