@@ -139,6 +139,10 @@ public class UsersController : ControllerBase
         {
             errors.AddUsernameExistsError(request.Username);
         }
+        if (request.Username!.Length < 3  && request.Username != "")
+        {
+            errors.AddUsernameExistsError(request.Username,"username must be bigger than 3 characters!");
+        }
         if(request.Password != "" && request.Password!.Length <= 7)
         {
             errors.AddPasswordlError();
