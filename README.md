@@ -45,8 +45,36 @@ Salt venture is a free gambling website where there is no real money involved, i
 
 
 ## Overview
+<p>
+  In this project, we had two weeks to create a full stack application using everything we learned during the 3 months long bootcamp at <a href="http://salt.dev">School of Applied Technology</a>.
+  <br />
+  We chose to work on this since we all like games, especially gambling games, but we don’t like to bet money. We also realized that these types of games are a bit more achievable in a two week time frame. While planning the project we also realized that there is a lot of useful data that can be collected from the games and the users, which was exciting to us.
+</p>
 
+## Tech Stack
 
+- Back End
+  - C#
+  - ASP.NET Web API
+  - Entity Framework
+  - xUnit ( 150 tests so far! )
+  - SQL Server
+  - JWT (Authentication)
+  - Azure ( Web App and SQL Server )
+  
+- Front End
+  - React
+  - Typescript
+  - HTML
+  - CSS
+  - Chart.js
+  - Github Pages
+
+- Extra
+  - Figma
+  - Mobile First Approach
+  - Mob Programming
+  - Agile Methodology
 ## Getting Started
 
 ## Project Files Description
