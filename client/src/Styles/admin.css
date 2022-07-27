@@ -209,3 +209,6 @@
     opacity: 0.2;
     animation: 1.2s ease-in-out 0s infinite normal none running skeleton;
 }
+.admin-input input {
+    width: 95%;
+}
