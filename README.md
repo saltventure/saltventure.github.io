@@ -38,7 +38,7 @@
 </div>
 
 ## Table of Contents:
- - [About the Project](About-the-Project)
+ - <a href="#About%20The%20Project">About the Project </a>
  - [Overview](Overview)
  - [Getting Started](Getting-Started)
  - [Project Files Description](Project-Files-Description)
