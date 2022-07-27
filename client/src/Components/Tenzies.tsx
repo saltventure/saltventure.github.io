@@ -4,6 +4,7 @@ import Dice from './Dice';
 
 import { nanoid } from "nanoid"
 import Confetti from "react-confetti"
+import { deserialize } from 'v8';
 
 
 
@@ -28,55 +29,115 @@ interface User {
 
 const Tenzies = ({ user, updateUser }: Props)=> {
   const [disable, setDisable] = useState(false);
+  const [diceNumbers, setDiceNumbers] = useState([]);
+  const [holding, setHolding] = useState("0000000000");
   const [counter, setCounter] = useState(60);
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
   }, [counter]);
-  const generateNewDie = () => {
+  const generateNewDie = (value,isHeld) => {
     return {
-      value: Math.ceil(Math.random() * 6),
-      isHeld: false,
+      value: value,
+      isHeld: isHeld,
       id: nanoid()
     }
   }
-  const allNewDice = () => {
-
-    const newDice = []
-    for (let i = 0; i < 10; i++) {
-      newDice.push(generateNewDie())
+  const allNewDice = async () => {
+    const requestSettings = {
+      method: 'GET',
+      headers: {
+          'Authorization': "Bearer " + user.token,
+          "Content-Type": "application/json"
+      }
+  };
+    try {
+        const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies", requestSettings)
+        if (!response.ok) {
+            throw new Error(JSON.stringify(await response.json()));
+        }
+        const deserializedJSON = await response.json();  
+        console.log(deserializedJSON)
+        const newDice = []
+        for (let i = 0; i < 10; i++) {
+          newDice.push(generateNewDie(deserializedJSON.grid[i],deserializedJSON.holding[i] == '1'))
+        }
+      setDice(newDice);
+      setHolding(deserializedJSON.holding);
     }
-    return newDice
+    catch (err) {
+    }
+   
   }
-  const [dice, setDice] = useState(allNewDice())
+  const [dice, setDice] = useState([])
   const [tenzies, setTenzies] = useState(false)
 
   useEffect(() => {
+    allNewDice();
+  },[])
+  useEffect(() => {
+    if(dice.length == 0) return;
     const allHeld = dice.every(die => die.isHeld)
     const firstValue = dice[0].value
     const allSameValue = dice.every(die => die.value === firstValue)
     if (allHeld && allSameValue) {
-      setTenzies(true)
+      // WON
+      setTenzies(true);
+      getReward();
+      return;
     }
+    setHolding(dice.map((die) => {
+      return die.isHeld ? '1' : '0';
+    }).join(""))
   }, [dice])
 
+  const pickPositions = async () => {
+    console.log("Picking")
+    const requestSettings = {
+      method: 'POST',
+      headers: {
+          'Authorization': "Bearer " + user.token,
+          "Content-Type": "application/json"
+      }
+  };
+    try {
+        const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies/pick/" + holding, requestSettings)
+        if (!response.ok) {
+            throw new Error(JSON.stringify(await response.json()));
+        }
+        const deserializedJSON = await response.json();  
+        console.log(deserializedJSON)
+        const newDice = []
+        for (let i = 0; i < 10; i++) {
+          newDice.push(generateNewDie(deserializedJSON.grid[i],deserializedJSON.holding[i] == '1'))
+        }
+      setDice(newDice);
+      setHolding(deserializedJSON.holding);
+    }
+    catch (err) {
+    }
+  }
   const rollDice = () => {
     if (!tenzies) {
-      setDice(oldDice => oldDice.map(die => {
-        return die.isHeld ?
-          die :
-          generateNewDie()
-      }))
+      pickPositions();
     } else {
       setTenzies(false)
-      setDice(allNewDice())
+      setDice([]);
+      allNewDice();
     }
   }
 
   const holdDice = (id) => {
+    let tempHolding = "";
     setDice(oldDice => oldDice.map(die => {
-      return die.id === id ?
-        { ...die, isHeld: !die.isHeld } :
-        die
+      if(die.id === id)
+      {
+        tempHolding += !die.isHeld == true ? '1' : '0';
+        return  { ...die, isHeld: !die.isHeld } 
+      }
+      else {
+        tempHolding += die.isHeld == true ? '1' : '0';
+        return die;
+      }
     }))
   }
 
@@ -112,7 +173,6 @@ const Tenzies = ({ user, updateUser }: Props)=> {
 }
 
 
-
   return (
     <div className='main'>
       {tenzies && <Confetti /> }
@@ -137,3 +197,5 @@ const Tenzies = ({ user, updateUser }: Props)=> {
   )
 }
 export default Tenzies
+
+
