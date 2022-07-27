@@ -47,7 +47,7 @@ public class UsersRepository : IUsersRepository
         await _context.SaveChangesAsync();
         return user;
     }
-    private static string HashPassword(string password, byte[] salt = null, bool needsOnlyHash = false)
+    private static string HashPassword(string password, byte[]? salt = null, bool needsOnlyHash = false)
     {
         if (salt == null || salt.Length != 16)
         {
@@ -90,9 +90,9 @@ public class UsersRepository : IUsersRepository
 
     public async Task<User> GetUserWithId(int id)
     {
-        return await _context.Users
+        return( await _context.Users!
         .Include(u => u.Bets)
-        .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true);
+        .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true))!;
     }
 
     public async Task<User> UpdateUser(User user, UserUpdateRequest request)

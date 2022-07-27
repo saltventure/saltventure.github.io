@@ -17,5 +17,5 @@ public class GamesRepository : IGamesRepository
         return await _context.Games!.ToListAsync();
     }
 
-    public async Task<Game> GetSingleGame(int Id) => await _context.Games!.FirstOrDefaultAsync(g => g.Id == Id);
+    public async Task<Game> GetSingleGame(int Id) => (await _context.Games!.FirstOrDefaultAsync(g => g.Id == Id))!;
 }

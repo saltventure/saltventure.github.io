@@ -120,8 +120,9 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       
       <h1 className="title">&lt;/ Tenzies &gt;</h1>
       <p className="instructions">Roll until all dice are the same.
-        Click each die to freeze it at its current value between rolls.</p>
-        
+        Click each die to freeze it at its current value between rolls.
+        <br />
+        Payout: 50</p>
       <div className="dice-container">
         {diceElements}
       </div>

@@ -83,7 +83,7 @@ public static class SaltnPepperLogic
 
             return _multipliers[game.NumberOfPicks - 1][game.PepperNumbers - 1];
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return 1;
         }

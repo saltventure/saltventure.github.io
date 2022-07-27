@@ -93,7 +93,7 @@ public static class TowerLogic
 
             return _multipliers[(int)game.Level][game.Floor - 1];
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return 1;
         }

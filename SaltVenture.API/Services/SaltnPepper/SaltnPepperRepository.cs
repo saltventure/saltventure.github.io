@@ -24,14 +24,14 @@ public class SaltnPepperRepository : ISaltnPepperRepository
 
     public async Task<SaltnPepper> GetActiveGame(int claimedId)
     {
-        return await _context.SaltnPeppersGames
-            .Include(c => c.Bet.User)
-            .OrderBy(c => c.Id).LastOrDefaultAsync(g => g.User.Id == claimedId && !g.IsCompleted);
+        return (await _context.SaltnPeppersGames!
+            .Include(c => c.Bet!.User)
+            .OrderBy(c => c.Id).LastOrDefaultAsync(g => g!.User!.Id == claimedId && !g.IsCompleted))!;
     }
 
     public async Task<SaltnPepper> GetGame(int gameId)
     {
-        return await _context.SaltnPeppersGames.FirstOrDefaultAsync(g => g.Id == gameId);
+        return (await _context.SaltnPeppersGames!.FirstOrDefaultAsync(g => g.Id == gameId))!;
     }
 
 
