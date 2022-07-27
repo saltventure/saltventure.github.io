@@ -122,7 +122,7 @@ public class TenziesController : ControllerBase
         if(holding.Length != 10) return BadRequest("holding Dices length shoulld be 10!");
 
         var blenderedGrid = TenziesLogic.BlenderGridWithHolding(game.Grid!, holding);
-        game.Grid = blenderedGrid;
+        game.Grid = TenziesLogic.GenerateNewGrid(blenderedGrid);
         game.Holding = holding;
         game.Round++;
         game = await _tenziesRepository.UpdateGame(game);
