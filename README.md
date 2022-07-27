@@ -152,11 +152,11 @@ Salt venture is a free gambling website where there is no real money involved, i
   ```
   This key doesn't have to be a especific string, it should be a random one.
   If you're not using user-secrets, in the Program.cs, replace 
-  ```bash
+  ```csharp
   var tokenKey = builder.Configuration["TOKEN_KEY"];
   ```
   with 
-  ```bash
+  ```csharp
   var tokenKey = "<YOUR_TOKEN_KEY";
   ```
   #### 2.4. Trying it out.
