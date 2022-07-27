@@ -153,6 +153,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
                         <hr className='edit-divider' />
 
                         <label className='edit-field-wrapper'>
+
                             <FaUserAlt className='edit-icon' />
                             <input className='edit-field-input' type="text" placeholder={user.username} name="username" /> <HiPencilAlt className="edit-icon" />
                         </label>

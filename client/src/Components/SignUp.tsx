@@ -118,7 +118,7 @@ function SignUp({ updateUser }: Props) {
                 <BsArrowLeft className='sign-up__back-btn' onClick={navigteToSignIn} />
                 <h2>Sign Up</h2>
             </div>
-            <h1 className='create-account'>Create<br />Account</h1>
+            <h1 className='create-account'>Create <br />Account</h1>
             <form onSubmit={sendSignUp}>
                 <label htmlFor="email" className='sign-up__label'>Email
                     <div className={"input-wrapper " + (error.Email !== "" && error.Email !== undefined ? "error__input" : "")}>

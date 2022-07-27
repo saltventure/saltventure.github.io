@@ -18,14 +18,15 @@ li {
   height: 80vh;
   top: 0;
   left: 0;
+  transition: 500ms;
   background-color: #1D1D1F;
   overflow-x: hidden;
-  transition: 0.5s;
   padding-bottom: 45px;
   padding-top: 60px;
   z-index: 200;
   border-bottom: 20vh solid #1D1D1F;
 }
+
 
 .sidepanel a,
 .log-out {

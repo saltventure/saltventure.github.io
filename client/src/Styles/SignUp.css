@@ -251,3 +251,18 @@
     color: #67656c;
     font-size: 8px;
 }
+@media screen and (min-width: 797px) {
+    .sign-up {
+        width: 50%;
+    }
+    
+}
+@media screen and (min-width: 110px) {
+    .create-account {
+        display: flex;
+    }
+    .create-account br {
+        display: none;
+    }
+    
+}

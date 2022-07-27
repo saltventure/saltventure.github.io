@@ -193,3 +193,19 @@
 {
     margin-left: 5px;
 }
+.loading--light {
+    background-color: rgb(179, 179, 179);
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(90deg, #2e2e2f, rgb(255, 255, 255), #2e2e2f);
+    opacity: 0.1;
+    animation: 1.2s ease-in-out 0s infinite normal none running skeleton;
+    color: transparent !important;
+}
+.loading-admin-graph {
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(90deg, #2e2e2f, rgb(255, 255, 255), #2e2e2f);
+    opacity: 0.2;
+    animation: 1.2s ease-in-out 0s infinite normal none running skeleton;
+}

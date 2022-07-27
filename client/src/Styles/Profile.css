@@ -1,5 +1,5 @@
 .profile-list {
-    width: fit-content;
+    width: 80vw;
     margin: auto;
 }
 
@@ -98,16 +98,18 @@
 
 .edit-field-wrapper {
     border: 2px solid transparent;
+    box-sizing: border-box;
 
     display: flex;
     margin-top: 10px;
     background-color: #2D2D2F;
     color: whitesmoke;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     outline: 0;
     font-size: 16px;
+    width: 100%;
     padding: 20px;
 }
 
@@ -118,6 +120,8 @@
     border: 0;
     outline: 0;
     font-size: 16px;
+
+    width: 95%;
 }
 
 .edit-icon {
@@ -225,9 +229,6 @@
     opacity: 0.1;
     animation: 1.2s ease-in-out 0s infinite normal none running skeleton;
 }
-.loading-profile-list-item {
-    width: 30vw;
-}
 .loading-profile-graph {
     height:40vw;
 }
@@ -239,4 +240,25 @@
         background-position: calc(200px + 100%) 0px;
     }
     
+}
+@media screen and (min-width:1000px) {
+    .profile-list {
+        width: 800px;
+    }
+    .edit-field-wrapper {
+        font-size: 20px;
+    }
+    .edit-field-input {
+        font-size: 20px;
+        padding-left: 10px;
+    }
+    .profile-edit__wrapper {
+        display: flex;
+        width: 800px;
+        margin: auto;
+        justify-content: right;
+    }
+    .profile-list-item, .chart-title {
+        font-size: 20px;
+    }
 }
