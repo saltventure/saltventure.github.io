@@ -76,7 +76,99 @@ Salt venture is a free gambling website where there is no real money involved, i
   - Mob Programming
   - Agile Methodology
 ## Getting Started
-
+  ### 0. Requirements:
+  You'll need to have installed:
+  #### .Net
+  ```bash
+  .NET 6.0 or higher
+  ```
+  To check your .NET version you can run:
+  ```bash
+  dotnet --list-sdks
+  ```
+  <br />
+  
+  #### NPM
+   ```bash
+  .npm 8.5.0 or higher
+  ```
+  To check your npm version, you can run:
+  ```bash
+  npm --version
+  ```
+  <br />
+  
+  #### Docker ( Optional )
+  ### 1. Clone the github project
+  To Get Started, clone the github project to your own machine
+  ```bash
+  git clone https://github.com/saltventure/saltventure.github.io.git
+  ```
+  Inside the SaltVenture.API and SaltVenture.Tests folder, run:
+  ```bash
+  dotnet restore
+  ```
+  On the client folder, run:
+  ```bash
+  npm install
+  ```
+  ### 2. Setting up Back End
+  You'll need to have a SQL Server runninng somewhere ( Recommended Docker )
+  #### 2.1. Setting Up Docker
+  If you don't have a SQL Server running anywhere, you can use docker
+  First, install docker on your computer [Docker Download Link](https://docs.docker.com/get-docker/)
+  After you have docker ready, run this command inside this repository's folder to set up docker.
+  ```bash
+  docker-compose up -d
+  ```
+  If you want to shut the SQL Server down, you can run:
+  ```bash
+  docker stop sql-server-db
+  ```
+  Note that the database is held in the container so when you shut it down the data is gone.
+  #### 2.2. Setting up the connection string
+  You need to get the SQL Server connection string to connect to the database, if you're using docker, you connection string might look like this:
+  ```bash
+  Server=localhost,1433;Database=SaltVenture;User Id=sa;password=Password_2_Change_4_Real_Cases_&
+  ```
+  Replace the connection string in the SaltVenture.API/appsettings.json with yours.
+  
+  We are using dotnet use-secrets in this project, if you also want to use user-secrets, follow this next steps:
+  Replace your connection string with somethinng like this:
+  ```bash
+  Server=localhost,1433;Database=SaltVenture;User Id=<username>;password=<password>
+  ```
+  Set up your credentials
+  ```bash
+  dotnet user-secrets set "DB_USERNAME" "<YOUR_DB_USERAME>"
+  dotnet user-secrets set "DB_PASSWORD" "<YOUR_DB_PASSWORD>"
+  ```
+  That's all!
+  If you don't wannt to use user-secrets, remove line 14 & 15 from Program.cs.
+  #### 2.3. Set up Token Key
+  To use authentication, you have to set a secret token key for JWT. To do that, run:
+  ```bash
+  dotnet user-secrets set "TOKEN_KEY" "<YOUR_TOKEN_KEY>"
+  ```
+  This key doesn't have to be a especific string, it should be a random one.
+  If you're not using user-secrets, in the Program.cs, replace 
+  ```bash
+  var tokenKey = builder.Configuration["TOKEN_KEY"];
+  ```
+  with 
+  ```bash
+  var tokenKey = "<YOUR_TOKEN_KEY";
+  ```
+  #### 2.4. Trying it out.
+  To make sure that it's working, run:
+  ```bash
+  dotnet run
+  ```
+  This will run your application, open the server on the indciated port, eg: 7034 and go to
+  https://localhost:7034/swagger/index.html
+  Try loggin in with the default values.
+  If you get a 404 not found value with a message of "Email or password was wrong!", it means that it is working.
+  
 ## Project Files Description
 
 ## Credits
