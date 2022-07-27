@@ -28,11 +28,11 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Login(UserLoginRequest request)
     {
         var user = (await _usersRepository.GetUsersWithEmail(request.Email!)).FirstOrDefault(
-                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
+                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!) && u.Email == request.Email);
         if (user == null) 
         {
             user = (await _usersRepository.GetAllWithUsername(request.Email!)).FirstOrDefault(
-                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
+                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!) && u.Username == request.Email);
             if(user == null)
                 return NotFound("Email or password was wrong!");
         }

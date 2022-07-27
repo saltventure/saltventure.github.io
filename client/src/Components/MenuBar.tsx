@@ -37,25 +37,25 @@ const MenuBar = ({ user, logOut }: Props) => {
     {
       display: 'Home',
       icon: <AiOutlineHome className='dropdown-icon' />,
-      to: '/salt-venture/',
+      to: '/',
       section: ''
     },
     {
       display: 'Profile',
       icon: <FaUserAlt className='dropdown-icon' />,
-      to: '/salt-venture/profile/' + user.id,
+      to: '/profile/' + user.id,
       section: 'profile'
     },
     {
       display: 'Edit Profile',
       icon: <FaPencilRuler className='dropdown-icon' />,
-      to: '/salt-venture/profile/edit',
+      to: '/profile/edit',
       section: 'rank'
     },
     {
       display: 'Rankings',
       icon: <GiWorld className='dropdown-icon' />,
-      to: '/salt-venture/ranks',
+      to: '/ranks',
       section: 'rank'
     },
   ]
@@ -93,7 +93,7 @@ const MenuBar = ({ user, logOut }: Props) => {
           <div onClick={logOutFromApp} className="log-out">
             <BiLogOut className="log-out-icon" />
             <div className='log-out-text'>
-              Bets
+              Log out
             </div>
           </div>
         </div>

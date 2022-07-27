@@ -33,7 +33,7 @@ function SignUp({ updateUser }: Props) {
 
     const navigate = useNavigate();
     const navigteToSignIn = () => {
-        navigate('/salt-venture/');
+        navigate('/');
     };
     const checkPassword = () =>
     {
@@ -85,7 +85,7 @@ function SignUp({ updateUser }: Props) {
             console.log(deserializedJSON);
             updateUser(deserializedJSON);
             setIsLoading(false);
-            navigate('/salt-venture/SignUp/Confirmation');
+            navigate('/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
             console.log(errors);
@@ -174,7 +174,7 @@ function SignUp({ updateUser }: Props) {
                     <FaApple /> Sign up with Apple
                 </button>
             </div>
-            <p className='sign-up__link'>Already have an account? <Link to="/salt-venture/login">Sign In!</Link></p>
+            <p className='sign-up__link'>Already have an account? <Link to="/login">Sign In!</Link></p>
 
         </div>
     );

@@ -48,7 +48,7 @@ function Home({ user }: Props) {
     <>
       <div className='home-screen'>
         {user.id === undefined ?
-          <p className='sign-up__link'>New Here? <Link to="/salt-venture/signup">Sign Up!</Link></p>
+          <p className='sign-up__link'>New Here? <Link to="/signup">Sign Up!</Link></p>
           :
           <></>
         }
@@ -64,10 +64,6 @@ function Home({ user }: Props) {
 
         <p className='search-games-title'> What do you want to Play?</p>
         
-        <label className='search-bar-rank'>
-
-          <input type="search" name="search" placeholder="search games" /> <AiOutlineSearch />
-        </label>
         <br />
         {(searchList.length === 0)
           ? null

@@ -13,7 +13,7 @@ type Props = {
 const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
   const navigate = useNavigate();
   const navigteToLogIn = () => {
-      navigate('/salt-venture/Login');
+      navigate('/Login');
   };
   return (
 
@@ -90,9 +90,9 @@ const PageInfoContent: React.FC<Props> = ({ setModalOpen, gameName,user }) => {
         className={`play-button ${gameName == "Salt & Pepper" || gameName === "Tenzies"
         || gameName === "Dragon Tower"  ? "" : "play-button--disabled"}`}
         onClick={() => { setModalOpen(false); 
-          {gameName === "Salt & Pepper" && navigate('/salt-venture/games/saltandpepper');}
-          {gameName === "Tenzies" && navigate('/salt-venture/games/tenzies');}
-          {gameName === "Dragon Tower" && navigate('/salt-venture/games/tower');}
+          {gameName === "Salt & Pepper" && navigate('/games/saltandpepper');}
+          {gameName === "Tenzies" && navigate('/games/tenzies');}
+          {gameName === "Dragon Tower" && navigate('/games/tower');}
         
         }}
       >
