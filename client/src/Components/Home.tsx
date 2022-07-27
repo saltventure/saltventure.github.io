@@ -116,7 +116,7 @@ function Home({ user }: Props) {
         </div>
         <div>
 
-          <h4> Free Games </h4>
+          <h4> Free Rewards</h4>
           <div className="games">
             <div className="game">
               <img className="game-img" src={Tenzi} alt="ss"

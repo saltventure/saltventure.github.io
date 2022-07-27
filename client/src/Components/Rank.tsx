@@ -44,13 +44,11 @@ function Rank({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON)
             setIsLoading(false);
 
             setData(deserializedJSON["$values"]);
         }
         catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {

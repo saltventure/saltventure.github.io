@@ -69,7 +69,6 @@ function SignUp({ updateUser }: Props) {
             Username: e.target["username"].value,
             Email: e.target["email"].value
         })
-        console.log(body)
         const requestSettings = {
             method: 'POST',
             headers: myHeaders,
@@ -82,13 +81,11 @@ function SignUp({ updateUser }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON);
             updateUser(deserializedJSON);
             setIsLoading(false);
             navigate('/SignUp/Confirmation');
         } catch (err) {
             let errors = JSON.parse(err.message);
-            console.log(errors);
             if (errors.status == undefined) {
                 let passwordError = errors.Password ? errors.Password["$values"][0] : "";
                 let emailError = errors.Email ? errors.Email["$values"][0] : "";

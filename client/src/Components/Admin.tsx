@@ -61,7 +61,6 @@ function Admin({ user, logout }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON.bets["$values"]);
             setUserData({
                 id: deserializedJSON.id,
                 username: deserializedJSON.username,
@@ -78,7 +77,6 @@ function Admin({ user, logout }: Props) {
             setIsSeeingUser(true);
 
             setIsLoadingUser(false);
-            console.log(err);
         }
     }
     const deleteUser = async (id) => {
@@ -99,7 +97,6 @@ function Admin({ user, logout }: Props) {
             getUsers();
         }
         catch (err) {
-            console.log(err);
         }
     }
     const getUsers = async () => {
@@ -125,7 +122,6 @@ function Admin({ user, logout }: Props) {
             let templabels = [];
             let curLabel = 0;
             let objAsArr = Object.entries(deserializedJSON.usersMoneyRange);
-            console.log(objAsArr)
             for (const [key, value] of objAsArr) {
                 if (key == "$id") continue;
 
@@ -142,10 +138,8 @@ function Admin({ user, logout }: Props) {
             setLabels(templabels)
             setChartData(tempData);
             setData(deserializedJSON);
-            console.log(deserializedJSON);
         }
         catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {

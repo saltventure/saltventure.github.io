@@ -64,18 +64,15 @@ function SignIn({updateUser}:Props) {
             const response = await fetch("https://saltventure.azurewebsites.net/api/users/login", requestSettings)
             if(response.status == 404) 
             {
-                console.log("404")
                 throw new Error(undefined);
             }
             if (!response.ok) {
-                console.log("not 404")
            
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
         setIsLoading(false);
 
-            console.log(deserializedJSON);
             updateUser(deserializedJSON);
             navigate('/');
         } catch (err) {
@@ -92,7 +89,6 @@ function SignIn({updateUser}:Props) {
                 
             }
             else {
-                console.log(errors.errors)
                 errors = errors.errors;
                 let passwordError = errors.Password ? errors.Password[0] : "";
                 let emailError = errors.Email ? errors.Email[0] : "";

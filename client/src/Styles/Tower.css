@@ -58,3 +58,7 @@
     transition: 400ms;
     background-color: rgb(52, 197, 52);
 }
+
+.tower-level-select {
+    width: fit-content;
+}
