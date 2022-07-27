@@ -47,7 +47,8 @@ public class TenziesController : ControllerBase
         {
             return BadRequest("The Game s not finished yet!");
         }
-        var newBalance = user.Balance + 10;
+        var winnings = 50 - activeGame.Round < 0 ? 5 : 50 - activeGame.Round;
+        var newBalance = user.Balance + winnings;
         activeGame.IsCompleted = true;
         await _tenziesRepository.UpdateGame(activeGame);
         user = await _usersRepository.UpdateBalance(newBalance, user);
