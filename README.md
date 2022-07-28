@@ -157,7 +157,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   ```
   with 
   ```csharp
-  var tokenKey = "<YOUR_TOKEN_KEY";
+  var tokenKey = "<YOUR_TOKEN_KEY>";
   ```
   #### 2.4. Trying it out.
   To make sure that it's working, run:
@@ -168,7 +168,21 @@ Salt venture is a free gambling website where there is no real money involved, i
   https://localhost:7034/swagger/index.html
   Try loggin in with the default values.
   If you get a 404 not found value with a message of "Email or password was wrong!", it means that it is working.
-  
+### Setting Up Front End
+On the client folder, make sure that you have installed all the modules needed:
+ ```bash
+  npm install
+  ```
+After that, Replace all the "https://saltventure.azurewebsites.net/" with your back end server eg:"https://localhost:7034/"
+<br />
+Lastly to start the front end server, run:
+ ```bash
+  npm start
+  ```
+ After that, you should have a front end running on this port:
+  ```bash
+  localhost:3000
+  ```
 ## Project Files Description
 
 ## Credits
