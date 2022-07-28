@@ -44,6 +44,8 @@ const Tenzies = ({ user, updateUser }: Props)=> {
     }
   }
   const allNewDice = async () => {
+    if(user == null) return;
+    if(user.balance > 1000) return;
     const requestSettings = {
       method: 'GET',
       headers: {
@@ -188,6 +190,7 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       <h1 className="title">&lt;/ Tenzies &gt;</h1>
       <p className="instructions">Roll until all dice are the same.
         Click each die to freeze it at its current value between rolls.
+        You can play only if you have less than 1000 points.
         </p>
         <p className='tenzies-payout'>
         Payout: <span>{reward}</span></p>

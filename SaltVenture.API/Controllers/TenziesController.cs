@@ -76,6 +76,7 @@ public class TenziesController : ControllerBase
         var user = await _usersRepository.GetUserWithId(claimedId);
 
         if (user == null) return Unauthorized();
+        if(user.Balance > 1000) return BadRequest("Never gonna give you up!!!!");
 
          var activeGame = await _tenziesRepository.GetActiveGame(claimedId);
         if (activeGame != null) {
