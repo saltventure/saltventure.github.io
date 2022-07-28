@@ -243,6 +243,7 @@ function SaltandPepper({ user, updateUser }: Props) {
                 );
             })
             setBoxes({ boxesList: boxesFromFetch, changes: boxes.changes + 1 });
+            if(user.balance != deserializedJSON.bet.user.balance)
             updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.bet.user.balance, token: user.token })
 
         }

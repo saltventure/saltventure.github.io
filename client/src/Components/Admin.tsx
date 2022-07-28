@@ -233,7 +233,7 @@ function Admin({ user, logout }: Props) {
                 <>
                     <div className="full-screen-cover" onClick={() => setIsSeeingUser(false)}></div>
                     <div className="admin-popup">
-                        <label className='search-bar-rank'>
+                        <label className='search-bar-rank admin-input'>
                             <input type="number" name="search" onChange={(e) => { setSearchingId(parseInt(e.target.value)) }} placeholder="Get User By Id" />
                             <AiOutlineSearch onClick={() => viewUser(searchingId)} />
                         </label>

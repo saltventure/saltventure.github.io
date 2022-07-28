@@ -29,7 +29,8 @@ interface User {
 
 const Tenzies = ({ user, updateUser }: Props)=> {
   const [disable, setDisable] = useState(false);
-  const [diceNumbers, setDiceNumbers] = useState([]);
+  const [isWin, setIsWIn] = useState(false);
+  const [reward, setReward] = useState(50);
   const [holding, setHolding] = useState("0000000000");
   const [counter, setCounter] = useState(60);
   useEffect(() => {
@@ -43,6 +44,8 @@ const Tenzies = ({ user, updateUser }: Props)=> {
     }
   }
   const allNewDice = async () => {
+    if(user == null) return;
+    if(user.balance > 1000) return;
     const requestSettings = {
       method: 'GET',
       headers: {
@@ -56,12 +59,12 @@ const Tenzies = ({ user, updateUser }: Props)=> {
             throw new Error(JSON.stringify(await response.json()));
         }
         const deserializedJSON = await response.json();  
-        console.log(deserializedJSON)
         const newDice = []
         for (let i = 0; i < 10; i++) {
           newDice.push(generateNewDie(deserializedJSON.grid[i],deserializedJSON.holding[i] == '1'))
         }
       setDice(newDice);
+      setReward(50 - deserializedJSON.round);
       setHolding(deserializedJSON.holding);
     }
     catch (err) {
@@ -91,7 +94,6 @@ const Tenzies = ({ user, updateUser }: Props)=> {
   }, [dice])
 
   const pickPositions = async () => {
-    console.log("Picking")
     const requestSettings = {
       method: 'POST',
       headers: {
@@ -105,12 +107,12 @@ const Tenzies = ({ user, updateUser }: Props)=> {
             throw new Error(JSON.stringify(await response.json()));
         }
         const deserializedJSON = await response.json();  
-        console.log(deserializedJSON)
         const newDice = []
         for (let i = 0; i < 10; i++) {
           newDice.push(generateNewDie(deserializedJSON.grid[i],deserializedJSON.holding[i] == '1'))
         }
       setDice(newDice);
+      setReward(50 - deserializedJSON.round);
       setHolding(deserializedJSON.holding);
     }
     catch (err) {
@@ -125,7 +127,9 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       allNewDice();
     }
   }
-
+  useEffect(() => {
+    if(reward < 0) setReward(5);
+  },[reward])
   const holdDice = (id) => {
     let tempHolding = "";
     setDice(oldDice => oldDice.map(die => {
@@ -164,7 +168,11 @@ const Tenzies = ({ user, updateUser }: Props)=> {
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
-        const deserializedJSON = await response.json();  
+        const deserializedJSON = await response.json();
+        setIsWIn(true);
+        setTimeout(() => {
+          setIsWIn(false);
+        },8000)  
         updateUser({ id: user.id, email: user.email, username: user.username, balance: deserializedJSON.balance, token: user.token })
 
     }
@@ -175,18 +183,20 @@ const Tenzies = ({ user, updateUser }: Props)=> {
 
   return (
     <div className='main'>
-      {tenzies && <Confetti /> }
+      {isWin &&   <div className="confetti-wrapper"> <Confetti className='confetti-disappear' /> </div>}
+
    
       
       <h1 className="title">&lt;/ Tenzies &gt;</h1>
       <p className="instructions">Roll until all dice are the same.
         Click each die to freeze it at its current value between rolls.
-        <br />
-        Payout: 50</p>
+        You can play only if you have less than 1000 points.
+        </p>
+        <p className='tenzies-payout'>
+        Payout: <span>{reward}</span></p>
       <div className="dice-container">
         {diceElements}
       </div>
-      <div > {tenzies && <button className="reward-button" disabled={disable} onClick={() => {setDisable(true); getReward();}}>Get Reward</button>}</div>
       <button
         className="roll-dice"
         onClick={() => {setDisable(false); rollDice();}}
