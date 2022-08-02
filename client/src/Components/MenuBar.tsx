@@ -8,6 +8,7 @@ import { FaPencilRuler, FaUserAlt } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { GiWorld } from 'react-icons/gi';
 import { BiLogOut } from 'react-icons/bi';
+import Logo from '../Assets/logo6.png';
 
 interface Props {
   user: {
@@ -36,32 +37,33 @@ const MenuBar = ({ user, logOut }: Props) => {
     {
       display: 'Home',
       icon: <AiOutlineHome className='dropdown-icon' />,
-      to: '/salt-venture/',
+      to: '/',
       section: ''
     },
     {
       display: 'Profile',
       icon: <FaUserAlt className='dropdown-icon' />,
-      to: '/salt-venture/profile/' + user.id,
+      to: '/profile/' + user.id,
       section: 'profile'
     },
     {
       display: 'Edit Profile',
       icon: <FaPencilRuler className='dropdown-icon' />,
-      to: '/salt-venture/profile/edit',
+      to: '/profile/edit',
       section: 'rank'
     },
     {
       display: 'Rankings',
       icon: <GiWorld className='dropdown-icon' />,
-      to: '/salt-venture/ranks',
+      to: '/ranks',
       section: 'rank'
     },
   ]
   if(user.id == undefined)
   {
     return (
-      <>Salt Venture</>
+      // <>Salt Venture</>
+      <><img src={Logo}  className="logo"/></>
     );
   }
   if (isActive === true ) {
@@ -75,7 +77,7 @@ const MenuBar = ({ user, logOut }: Props) => {
         <div id="mySidepanel" className="sidepanel" style={{ "width": "250px" } as React.CSSProperties}>
           <FaUserAlt className='dropdown-user-icon' />
           <div className="dropdown-user">
-            <p> {user.username} </p>
+            <p> &lt;/ <span>{user.username}</span> &gt; </p>
             <p className='dropdown-email'> {user.email} </p>
           </div>
           <div className='header-links'>
@@ -90,11 +92,13 @@ const MenuBar = ({ user, logOut }: Props) => {
           <hr className='log-out-divider' />
           <div onClick={logOutFromApp} className="log-out">
             <BiLogOut className="log-out-icon" />
-            <div className='log-out-text'>Log out</div>
+            <div className='log-out-text'>
+              Log out
+            </div>
           </div>
         </div>
         </div>
-        <div className="full-screen-cover"></div>
+        <div className="full-screen-cover" onClick={toggleIsActive}></div>
       </>
 
     )

@@ -41,7 +41,7 @@ function SignIn({updateUser}:Props) {
 
     const navigate = useNavigate();
     const navigteToSignUp = () => {
-        navigate('/salt-venture/');
+        navigate('/');
     };
     const sendSignIn = async (e) => {
         setIsLoading(true);
@@ -64,25 +64,22 @@ function SignIn({updateUser}:Props) {
             const response = await fetch("https://saltventure.azurewebsites.net/api/users/login", requestSettings)
             if(response.status == 404) 
             {
-                console.log("404")
                 throw new Error(undefined);
             }
             if (!response.ok) {
-                console.log("not 404")
            
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
         setIsLoading(false);
 
-            console.log(deserializedJSON);
             updateUser(deserializedJSON);
-            navigate('/salt-venture/');
+            navigate('/');
         } catch (err) {
             setIsLoading(false);
             if(err.message === "")
             {
-                setError({ Password: "User not Found", Username: "", Email: "User not Found" })
+                setError({ Password: "Wrong Password!", Username: "", Email: "User not Found!" })
                 return;
             }
 
@@ -92,7 +89,6 @@ function SignIn({updateUser}:Props) {
                 
             }
             else {
-                console.log(errors.errors)
                 errors = errors.errors;
                 let passwordError = errors.Password ? errors.Password[0] : "";
                 let emailError = errors.Email ? errors.Email[0] : "";
@@ -112,12 +108,12 @@ function SignIn({updateUser}:Props) {
                 <BsArrowLeft className='sign-up__back-btn' onClick={navigteToSignUp} />
                 <h2>Log In</h2>
             </div>
-            <h1 className='create-account'>Welcome<br />Back!</h1>
+            <h1 className='create-account'>Welcome <br />Back!</h1>
             <form onSubmit={sendSignIn}>
-                <label htmlFor="email" className='sign-up__label'>Email
+                <label htmlFor="email" className='sign-up__label'>Username or Email
                     <div className={"input-wrapper " + (error.Email !== "" && error.Email !== undefined ? "error__input" : "")}>
-                        <MdEmail />
-                        <input onChange={(e) => { setEmailText(e.target.value) }} value={emailText} placeholder='example@appliedtechnology.se' type="text" name='email' id='email' required />
+                        <FaUserAlt />
+                        <input onChange={(e) => { setEmailText(e.target.value) }} value={emailText} placeholder='Username or Email' type="text" name='email' id='email' required />
                     </div>
                     <p className='error__msg'> {error.Email}</p>
                 </label>
@@ -156,7 +152,7 @@ function SignIn({updateUser}:Props) {
                     <FaApple /> Log In with Apple
                 </button>
             </div>
-            <p className='sign-up__link'>New Here? <Link to="/salt-venture/signup">Sign Up!</Link></p>
+            <p className='sign-up__link'>New Here? <Link to="/signup">Sign Up!</Link></p>
         </div>
     );
 }

@@ -21,12 +21,18 @@ public class SignUpError
         Errors["Password"] = new List<string>(){msg};
     }
 
-
     public void AddUsernameExistsError(string? username)
     {
          Status = 400;
         Title = "One or more validation errors occurred.";
         var msg = $"{username} is being used by another user!";
+        Errors["Username"] = new List<string>(){msg};
+    }
+ public void AddUsernameExistsError(string? username, string errorMsg)
+    {
+         Status = 400;
+        Title = "One or more validation errors occurred.";
+        var msg = $"{username} {errorMsg}";
         Errors["Username"] = new List<string>(){msg};
     }
 }

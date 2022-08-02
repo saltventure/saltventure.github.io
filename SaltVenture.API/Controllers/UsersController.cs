@@ -28,11 +28,11 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Login(UserLoginRequest request)
     {
         var user = (await _usersRepository.GetUsersWithEmail(request.Email!)).FirstOrDefault(
-                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
+                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!) && u.Email == request.Email);
         if (user == null) 
         {
             user = (await _usersRepository.GetAllWithUsername(request.Email!)).FirstOrDefault(
-                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!));
+                      u => UsersRepository.VerifyPassword(u.Password!, request.Password!) && u.Username == request.Email);
             if(user == null)
                 return NotFound("Email or password was wrong!");
         }
@@ -139,6 +139,10 @@ public class UsersController : ControllerBase
         {
             errors.AddUsernameExistsError(request.Username);
         }
+        if (request.Username!.Length < 3  && request.Username != "")
+        {
+            errors.AddUsernameExistsError(request.Username,"username must be bigger than 3 characters!");
+        }
         if(request.Password != "" && request.Password!.Length <= 7)
         {
             errors.AddPasswordlError();
@@ -157,6 +161,22 @@ public class UsersController : ControllerBase
 
         return Ok(response);
     }
+
+
+  [HttpPatch("{id}/coins")]
+    public async Task<IActionResult> UpdateUserBalance(int id, int amount)
+    {
+        var user = await _usersRepository.GetUserWithId(id);
+        var oldBalance = user.Balance;
+        System.Console.WriteLine("balance: " + oldBalance);
+        if (user == null) return NotFound();
+        // Change Balance
+       
+        user = await _usersRepository.UpdateBalance(user.Balance + amount, user);
+
+        return Ok();
+    }
+
 
     [HttpDelete]
     public async Task<IActionResult> DeleteUser()

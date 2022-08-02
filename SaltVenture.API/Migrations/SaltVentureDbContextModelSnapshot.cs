@@ -39,7 +39,7 @@ namespace SaltVenture.API.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("Game")
                         .HasColumnType("int");
 
                     b.Property<double>("Multiplier")
@@ -52,8 +52,6 @@ namespace SaltVenture.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GameId");
 
                     b.HasIndex("UserId");
 
@@ -83,6 +81,106 @@ namespace SaltVenture.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.SaltnPepper", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("BetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Grid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NumberOfPicks")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PepperNumbers")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BetId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SaltnPeppersGames");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.Tenzie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Grid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Holding")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Round")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tenzies");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.Tower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("BetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Grid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BetId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TowersGames");
                 });
 
             modelBuilder.Entity("SaltVenture.API.Models.User", b =>
@@ -115,15 +213,48 @@ namespace SaltVenture.API.Migrations
 
             modelBuilder.Entity("SaltVenture.API.Models.Bet", b =>
                 {
-                    b.HasOne("SaltVenture.API.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId");
-
                     b.HasOne("SaltVenture.API.Models.User", "User")
                         .WithMany("Bets")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Game");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.SaltnPepper", b =>
+                {
+                    b.HasOne("SaltVenture.API.Models.Bet", "Bet")
+                        .WithMany()
+                        .HasForeignKey("BetId");
+
+                    b.HasOne("SaltVenture.API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Bet");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.Tenzie", b =>
+                {
+                    b.HasOne("SaltVenture.API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SaltVenture.API.Models.Games.Tower", b =>
+                {
+                    b.HasOne("SaltVenture.API.Models.Bet", "Bet")
+                        .WithMany()
+                        .HasForeignKey("BetId");
+
+                    b.HasOne("SaltVenture.API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Bet");
 
                     b.Navigation("User");
                 });

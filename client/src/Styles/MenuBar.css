@@ -7,23 +7,26 @@ ul {
 li {
   padding: 18px 10px;
 }
+
 .header-links {
   overflow-y: scroll;
 }
+
 .sidepanel {
   width: 0;
   position: fixed;
-  height: 100vh;
+  height: 80vh;
   top: 0;
   left: 0;
+  transition: 500ms;
   background-color: #1D1D1F;
   overflow-x: hidden;
-  transition: 0.5s;
   padding-bottom: 45px;
   padding-top: 60px;
   z-index: 200;
-
+  border-bottom: 20vh solid #1D1D1F;
 }
+
 
 .sidepanel a,
 .log-out {
@@ -39,25 +42,40 @@ li {
 
 .log-out {
   margin-bottom: 60px;
-  
+
 }
+
 .sidepanel a:hover {
   background-color: #2D2D2F;
 }
 
 .full-screen-cover {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0);
   width: 1;
   z-index: 20;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  animation: darker 1000ms forwards;
+}
+@keyframes darker {
+  0%{
+  background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  }
+  
 }
 
 .burger-header {
   z-index: 300;
+  background-color: #1D1D1F;
+  border-radius: 10px;
+  border: 1px solid #ea454557;
 }
 
 .dropdown-icon {
@@ -120,4 +138,7 @@ li {
 .log-out:hover {
   background-color: #EA454524;
   cursor: pointer;
+}
+.logo {
+  height:100px;
 }

@@ -56,7 +56,6 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
             Email: e.target["email"].value,
             Password: e.target["password"].value,
         })
-        console.log(body)
         const requestSettings = {
             method: 'PATCH',
             headers: {
@@ -73,15 +72,15 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
             }
             const deserializedJSON = await response.json();
             if (response.ok) {
-                console.log(deserializedJSON)
                 updateUser({ id: deserializedJSON.id, email: deserializedJSON.email, username: deserializedJSON.username, balance: deserializedJSON.balance, token: user.token })
-                setConfirmation("Successfully Updated Account!")
+                setConfirmation("Successfully Updated Account!");
+                e.target["username"].value = "";
+                e.target["email"].value = "";
+                e.target["password"].value = "";
             }
-            console.log(deserializedJSON);
         }
         catch (err) {
             let errors = JSON.parse(err.message);
-            console.log(errors);
             if (errors.status == undefined) {
                 let passwordError = errors.Password ? errors.Password["$values"][0] : "";
                 let emailError = errors.Email ? errors.Email["$values"][0] : "";
@@ -138,7 +137,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
                 : <></>}
 
             <div className='profile-edit__wrapper'>
-                <Link to="/salt-venture/profile/" ><FaPencilRuler
+                <Link to="/profile/" ><FaPencilRuler
                     className="profile-edit__button--active" /></Link>
             </div>
             <></>
@@ -150,6 +149,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
                         <hr className='edit-divider' />
 
                         <label className='edit-field-wrapper'>
+
                             <FaUserAlt className='edit-icon' />
                             <input className='edit-field-input' type="text" placeholder={user.username} name="username" /> <HiPencilAlt className="edit-icon" />
                         </label>

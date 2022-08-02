@@ -54,6 +54,11 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddScoped<IGamesRepository, GamesRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<ISaltnPepperRepository, SaltnPepperRepository>();
+builder.Services.AddScoped<ITowerRepository, TowersRepository>();
+builder.Services.AddScoped<IBetsRepository, BetsRepository>();
+builder.Services.AddScoped<ITenziesRepository, TenziesRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 // JWT PART
 var tokenKey = builder.Configuration["TOKEN_KEY"];
 var key = Encoding.ASCII.GetBytes(tokenKey);
@@ -77,7 +82,7 @@ builder.Services.AddAuthentication(x =>
       });
 
 builder.Services.AddScoped<IJwtAuthenticationService>(provider => 
-  new JwtAuthenticationService(tokenKey,provider.GetService<IUsersRepository>()));
+  new JwtAuthenticationService(tokenKey,provider.GetService<IUsersRepository>()!));
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

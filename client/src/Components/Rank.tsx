@@ -25,7 +25,9 @@ interface userData {
 
 function Rank({ user }: Props) {
     const [data, setData] = useState<Array<userData | undefined>>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const getUsers = async (usernameLike?) => {
+        setIsLoading(true);
         if (user.id == undefined) return;
         const requestSettings = {
             method: 'GET',
@@ -42,16 +44,48 @@ function Rank({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON)
+            setIsLoading(false);
+
             setData(deserializedJSON["$values"]);
         }
         catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {
         getUsers();
     }, [user])
+    if(isLoading)
+    {
+        return(
+            <div>
+            <h1 className='rank-title'>Rankings</h1>
+            <label className='search-bar-rank'>
+                <input type="search" name="search" onChange={(e) => getUsers(e.target.value)} placeholder="search user" /> <AiOutlineSearch />
+            </label>
+            <hr className='rank-title-divider' />
+            <div className='rank-list'>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+
+                <div className='rank-list-item loading loading-rank-list-item'>
+                </div>
+            </div>
+        </div>
+        )
+    }
     if (data.length != 0) {
 
         return (
@@ -66,15 +100,13 @@ function Rank({ user }: Props) {
                     {data.map((user) => {
                         return (
                             <>
-                                <Link className='rank-list-item' to={`/salt-venture/profile/${user.id}`}>
+                                <Link className='rank-list-item' to={`/profile/${user.id}`}>
                                     <FaUserAlt className='rank-list-item-img' />
                                     <div className="rank-list-item-info">
                                         <p className='rank-list-item__username'>{user.username}</p>
 
                                         <p className='rank-list-item__balance'><TbSalt className='salt-shaker' /> {user.balance}</p>
-
                                     </div>
-
                                 </Link>
                                 <hr className='rank-divider' />
                             </>
@@ -88,14 +120,11 @@ function Rank({ user }: Props) {
         <div>
             <h1 className='rank-title'>Rankings</h1>
             <label className='search-bar-rank'>
-
                 <input type="search" name="search" onChange={(e) => getUsers(e.target.value)} placeholder="search user" /> <AiOutlineSearch />
             </label>
             <hr className='rank-title-divider' />
             <div className='rank-list'>
-                <div className='rank-list-item'>
                     <div className="no-user">No User Found</div>
-                </div>
             </div>
         </div>
     )

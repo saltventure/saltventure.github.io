@@ -246,3 +246,23 @@
 .sign-in__button--confirmation:hover {
     opacity: 90%;
 }
+.almost-hidden {
+    text-align: center;
+    color: #67656c;
+    font-size: 8px;
+}
+@media screen and (min-width: 797px) {
+    .sign-up {
+        width: 50%;
+    }
+    
+}
+@media screen and (min-width: 110px) {
+    .create-account {
+        display: flex;
+    }
+    .create-account br {
+        display: none;
+    }
+    
+}

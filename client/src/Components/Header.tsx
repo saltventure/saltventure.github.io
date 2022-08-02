@@ -19,12 +19,13 @@ interface Props {
 function Header({ user, logOut }: Props) {
     const navigate = useNavigate();
     const navigteToSignIn = () => {
-        navigate('/salt-venture/login');
+        navigate('/login');
     };
     return (
         <>
         <header className='sec-header'></header>
             <header className='main-header'>
+                
                 <MenuBar user = {user} logOut= {logOut}/>
                 <div className='balance'>
                     {user.id !== undefined ?
@@ -32,6 +33,7 @@ function Header({ user, logOut }: Props) {
                             {user.balance}</>
                         : <button onClick={navigteToSignIn} className='header__login-btn'>Login</button>
                     }
+
                 </div>
             </header>
         </>

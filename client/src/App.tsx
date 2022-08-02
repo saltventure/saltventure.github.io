@@ -11,6 +11,10 @@ import Rank from './Components/Rank';
 import Header from './Components/Header';
 import ProfileSettings from './Components/ProfileSettings';
 import SignUpConfirmation from './Components/SignUpConfirmation';
+import SaltandPepper from './Components/SaltandPepper';
+import Tenzies from './Components/Tenzies';
+import Tower from './Components/Tower';
+import Admin from './Components/Admin';
 
 interface User {
   id: number | undefined,
@@ -50,35 +54,41 @@ function App() {
     }
   }, [])
 
+  if(user.username != undefined && user.username == "admin")
+  {
+    return (<Admin user={user} logout={logOut} />)
+  }
 
   return (
     <div className="App">
 
       <Routes>
-        <Route path="/salt-venture/SignUp" element={<></>}></Route>
-        <Route path="/salt-venture/SignUp/confirmation" element={<></>}></Route>
-        <Route path="/salt-venture/Login" element={<></>}></Route>
+        <Route path="/SignUp" element={<></>}></Route>
+        <Route path="/Login" element={<></>}></Route>
         <Route path="*" element={<Header user={user} logOut={logOut} />}></Route>
       </Routes>
 
 {
   user.id == undefined ? 
   <Routes>
-  <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
-  <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
-  <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
+  <Route path="/signup" element={<SignUp updateUser={updateUser} />}></Route>
+  <Route path="/login" element={<SignIn updateUser={updateUser} />}></Route>
+  <Route path="/signup/confirmation" element={<SignUpConfirmation logOut={logOut}/>}></Route>
   <Route path="*" element={<Home user={user} />}></Route>
 </Routes>
   :
 
       <Routes>
-        <Route path="/salt-venture/SignUp" element={<SignUp updateUser={updateUser} />}></Route>
-        <Route path="/salt-venture/Login" element={<SignIn updateUser={updateUser} />}></Route>
-        <Route path="/salt-venture/profile/:id" element={<Profile user={user} />}></Route>
-        <Route path="/salt-venture/profile" element={<Profile user={user} />}></Route>
-        <Route path="/salt-venture/ranks" element={<Rank user={user} />}></Route>
-        <Route path="/salt-venture/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
-        <Route path="/salt-venture/SignUp/Confirmation" element={<SignUpConfirmation />}></Route>
+        <Route path="/signup" element={<SignUp updateUser={updateUser} />}></Route>
+        <Route path="/Login" element={<SignIn updateUser={updateUser} />}></Route>
+        <Route path="/profile/:id" element={<Profile user={user} />}></Route>
+        <Route path="/profile" element={<Profile user={user} />}></Route>
+        <Route path="/ranks" element={<Rank user={user} />}></Route>
+        <Route path="/profile/edit" element={<ProfileSettings user={user} logOut={logOut} updateUser={updateUser} />}></Route>
+        <Route path="/signup/confirmation" element={<SignUpConfirmation logOut={logOut} />}></Route>
+        <Route path="/games/saltandpepper" element={<SaltandPepper user={user} updateUser={updateUser}/>}></Route>
+        <Route path="/games/tower" element={<Tower user={user} updateUser={updateUser}/>}></Route>
+        <Route path="/games/tenzies" element={<Tenzies user={user} updateUser={updateUser}/>}></Route>
         <Route path="*" element={<Home user={user} />}></Route>
       </Routes>
 }

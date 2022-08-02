@@ -51,18 +51,15 @@ function Profile({ user }: Props) {
                 throw new Error(JSON.stringify(await response.json()));
             }
             const deserializedJSON = await response.json();
-            console.log(deserializedJSON.bets["$values"]);
             setUserData({
                 id: deserializedJSON.id,
                 username: deserializedJSON.username,
                 email: deserializedJSON.email,
                 balance: deserializedJSON.balance,
-                bets: deserializedJSON.bets["$values"]
+                bets: [...deserializedJSON.bets["$values"],{game:-1,balance:deserializedJSON.balance}]
             });
-            console.log(deserializedJSON.bets["$values"].map((b, index) => index))
         }
         catch (err) {
-            console.log(err);
         }
     }
     if (user.id == undefined) {
@@ -72,26 +69,34 @@ function Profile({ user }: Props) {
             </>
         );
     }
-    if (userData.id == undefined) return (<><div className="wave-animation">
-        <div className="wave" style={{ "--w": "0s" } as React.CSSProperties} ></div>
-        <div className="wave" style={{ "--w": "0.4s" } as React.CSSProperties}></div>
-        <div className="wave" style={{ "--w": "0.8s" } as React.CSSProperties}></div>
-        <div className="wave" style={{ "--w": "1.2s" } as React.CSSProperties}></div>
-    </div></>);
+    if (userData.id == undefined)     return (<>
+        <div className="profile-image loading-profile-image loading"> 
+        </div>
+        <div className='profile-list'>
+        <p className='profile-list-item loading loading-profile-list-item' > </p>
+        <p className='profile-list-item loading loading-profile-list-item' > </p>
+        <p className='profile-list-item loading loading-profile-list-item'></p>
+
+        </div>
+        <hr className='rank-divider' />
+        <div className="profile-graph loading loading-profile-graph"></div>
+    </>);
+
     return (
         <div>
             <>
                 {id == undefined || user.id.toString() == id ?
                     <div className='profile-edit__wrapper'>
-                        <Link to="/salt-venture/profile/edit" ><FaPencilRuler
+                        <Link to="/profile/edit" ><FaPencilRuler
                             className="profile-edit__button" /></Link>
                     </div>
                     : <></>
                 }
             </>
             <div>
+
                 <FaUserAlt className='profile-image' />
-                <h2 className='profile-user'>{userData.username}</h2>
+                <h2 className='profile-user'> &lt;/ {userData.username} &gt;</h2>
                 <div className='profile-list'>
                     <p className='profile-list-item'>{userData.email} </p>
                     <p className='profile-list-item'>Current Points: <TbSalt className="profile-balance-icon salt-shaker" />{userData.balance}</p>
@@ -102,11 +107,18 @@ function Profile({ user }: Props) {
             <div className='chart-title'>Points Over Time:</div>
             <Chart labels={userData.bets.map((b, index) => index)} data={userData.bets.map((b) => b.balance)} label={"Salt Points"} color={"EA4545"} />
             {/* <hr className='rank-divider' />
-            <div className='chart-title'>Profit on Crash:</div>
+            <div className='chart-title'>Points when playing Salt & Pepper:</div>
 
             <Chart labels=
-            {userData.bets.map(b =>{ if(b.game.name =="Crash") return b} ).map((b,index) => index)}
-             data={userData.bets.map(b =>{ if(b.game.name =="Crash") return b;} ).map((b,index) => {console.log(b); return index;})}
+            {userData.bets.filter(b =>b.game == 0 || b.game == -1 ).map((b,index) => index)}
+             data={userData.bets.filter(b => b.game == 0 || b.game == -1 ).map((b,index) =>  b.balance)}
+              label={"$ Salties"} color={"EA4545"} />
+              <hr className='rank-divider' />
+            <div className='chart-title'>Points when playing Dragon Tower:</div>
+
+            <Chart labels=
+            {userData.bets.filter(b =>b.game == 1  || b.game == -1 ).map((b,index) => index)}
+             data={userData.bets.filter(b => b.game == 1 || b.game == -1 ).map((b,index) =>  b.balance)}
               label={"$ Salties"} color={"EA4545"} /> */}
         </div>
     );

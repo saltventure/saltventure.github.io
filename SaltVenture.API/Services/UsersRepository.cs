@@ -47,7 +47,7 @@ public class UsersRepository : IUsersRepository
         await _context.SaveChangesAsync();
         return user;
     }
-    private static string HashPassword(string password, byte[] salt = null, bool needsOnlyHash = false)
+    private static string HashPassword(string password, byte[]? salt = null, bool needsOnlyHash = false)
     {
         if (salt == null || salt.Length != 16)
         {
@@ -90,24 +90,23 @@ public class UsersRepository : IUsersRepository
 
     public async Task<User> GetUserWithId(int id)
     {
-        return await _context.Users
+        return( await _context.Users!
         .Include(u => u.Bets)
-        .ThenInclude(b => b.Game)
-        .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true);
+        .FirstOrDefaultAsync(u => u.Id == id && u.IsActive == true))!;
     }
 
     public async Task<User> UpdateUser(User user, UserUpdateRequest request)
     {
        
-        if (request.Password != "")
+        if (!string.IsNullOrEmpty(request.Password))
         {
             user.Password = request.Password;
         }
-        if (request.Email != "")
+        if (!string.IsNullOrEmpty(request.Email))
         {
             user.Email = request.Email;
         }
-        if (request.Username != "")
+        if (!string.IsNullOrEmpty(request.Username))
         {
             user.Username = request.Username;
         }
@@ -123,5 +122,14 @@ public class UsersRepository : IUsersRepository
         user.IsActive = false;
         var updateduser = _context.Users?.Update(user);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<User> UpdateBalance(int newBalance, User user)
+    {
+        user.Balance = newBalance;
+        var updateduser = _context.Users?.Update(user);
+        await _context.SaveChangesAsync();
+        return updateduser!.Entity;
+
     }
 }
