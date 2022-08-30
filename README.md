@@ -36,7 +36,24 @@
 </div>
 
 ## Table of Contents
-
+- [Table of Contents](#table-of-contents)
+- [About the Project](#about-the-project)
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  * [0. Requirements:](#0-requirements)
+    + [.Net](#net)
+    + [NPM](#npm)
+    + [Docker ( Optional )](#docker--optional-)
+  * [1. Clone the github project](#1-clone-the-github-project)
+  * [2. Setting up Back End](#2-setting-up-back-end)
+    + [2.1. Setting Up Docker](#21-setting-up-docker)
+    + [2.2. Setting up the connection string](#22-setting-up-the-connection-string)
+    + [2.3. Set up Token Key](#23-set-up-token-key)
+    + [2.4. Trying it out.](#24-trying-it-out)
+  * [3. Setting Up Front End](#3-setting-up-front-end)
+- [Project Files Description](#project-files-description)
+- [Credits](#credits)
 
 ## About the Project
 <p>
@@ -76,7 +93,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   - Mob Programming
   - Agile Methodology
 ## Getting Started
-  ### 0. Requirements:
+  ### 0. Requirements
   You'll need to have installed:
   #### .Net
   ```bash
@@ -98,7 +115,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   ```
   <br />
   
-  #### Docker ( Optional )
+  #### Docker (Optional)
   ### 1. Clone the github project
   To Get Started, clone the github project to your own machine
   ```bash
@@ -168,7 +185,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   https://localhost:7034/swagger/index.html
   Try loggin in with the default values.
   If you get a 404 not found value with a message of "Email or password was wrong!", it means that it is working.
-### Setting Up Front End
+### 3. Setting Up Front End
 On the client folder, make sure that you have installed all the modules needed:
  ```bash
   npm install
