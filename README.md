@@ -202,4 +202,11 @@ Lastly to start the front end server, run:
   ```
 ## Project Files Description
 
-## Credits
+## Contributors:
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/salomaogabriel/"><img src="https://github.com/salomaogabriel.png" width="100px;" alt=""/><br /><sub><b>Gabriel Salomão</b></sub></a><br /><a href="https://github.com/saltventure/saltventure.github.io/commits?author=salomaogabriel" title="Code">💻</a></td>
+   <td align="center"><a href="https://github.com/Qaisarm/"><img src="https://github.com/Qaisarm.png" width="100px;" alt=""/><br /><sub><b>Qaisar Mukhtar</b></sub></a><br /><a href="https://github.com/saltventure/saltventure.github.io/commits?author=Qaisarm" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/NicholasIzosimov/"><img src="https://github.com/NicholasIzosimov.png" width="100px;" alt=""/><br /><sub><b>Nicholas Izosimov</b></sub></a><br /><a href="https://github.com/saltventure/saltventure.github.io/commits?author=NicholasIzosimov" title="Code">💻</a></td>
+  </tr>
+</table>
