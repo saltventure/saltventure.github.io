@@ -170,7 +170,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   dotnet tool install --global dotnet-ef
   ```
   Verify that it has been installed correctly by running
-  ``bash
+  ```bash
   dotnet ef
   ```
   You should get something that looks like this:
