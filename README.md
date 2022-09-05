@@ -49,9 +49,9 @@
   * [2. Setting up Back End](#2-setting-up-back-end)
     + [2.1. Setting Up Docker](#21-setting-up-docker)
     + [2.2. Setting up the connection string](#22-setting-up-the-connection-string)
-      * [2.2.1 Setting Up Entity Framework](#221-setting-up-entity-framework)
-    + [2.3. Set up Token Key](#23-set-up-token-key)
-    + [2.4. Trying it out.](#24-trying-it-out)
+    + [2.3 Setting Up Entity Framework](#23-setting-up-entity-framework)
+    + [2.4. Set up Token Key](#24-set-up-token-key)
+    + [2.5. Trying it out.](#25-trying-it-out)
   * [3. Setting Up Front End](#3-setting-up-front-end)
 - [Project Files Description](#project-files-description)
 - [Contributors](#contributors)
@@ -163,7 +163,7 @@ Salt venture is a free gambling website where there is no real money involved, i
   ```
   That's all!
   If you don't wannt to use user-secrets, remove line 14 & 15 from Program.cs.
-  #### 2.2.1 Setting Up Entity Framework
+  #### 2.3 Setting Up Entity Framework
   Now that you have a Database Server setted up, you need to add the tables to the Database.
   First make sure that you have *.NET Entity Framework tools* installed.
   ```bash
@@ -196,7 +196,7 @@ Entity Framework Core .NET Command-line Tools 2.1.3-rtm-32065
    ```bash
     dotnet ef database update
    ```
-  #### 2.3. Set up Token Key
+  #### 2.4. Set up Token Key
   To use authentication, you have to set a secret token key for JWT. To do that, run:
   ```bash
   dotnet user-secrets set "TOKEN_KEY" "<YOUR_TOKEN_KEY>"
@@ -210,7 +210,7 @@ Entity Framework Core .NET Command-line Tools 2.1.3-rtm-32065
   ```csharp
   var tokenKey = "<YOUR_TOKEN_KEY>";
   ```
-  #### 2.4. Trying it out.
+  #### 2.5. Trying it out.
   To make sure that it's working, run:
   ```bash
   dotnet run
