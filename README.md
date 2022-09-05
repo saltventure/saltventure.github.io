@@ -49,11 +49,12 @@
   * [2. Setting up Back End](#2-setting-up-back-end)
     + [2.1. Setting Up Docker](#21-setting-up-docker)
     + [2.2. Setting up the connection string](#22-setting-up-the-connection-string)
+      * [2.2.1 Setting Up Entity Framework](#221-setting-up-entity-framework)
     + [2.3. Set up Token Key](#23-set-up-token-key)
     + [2.4. Trying it out.](#24-trying-it-out)
   * [3. Setting Up Front End](#3-setting-up-front-end)
 - [Project Files Description](#project-files-description)
-- [Credits](#credits)
+- [Contributors](#contributors)
 
 ## About the Project
 <p>
@@ -162,6 +163,39 @@ Salt venture is a free gambling website where there is no real money involved, i
   ```
   That's all!
   If you don't wannt to use user-secrets, remove line 14 & 15 from Program.cs.
+  #### 2.2.1 Setting Up Entity Framework
+  Now that you have a Database Server setted up, you need to add the tables to the Database.
+  First make sure that you have *.NET Entity Framework tools* installed.
+  ```bash
+  dotnet tool install --global dotnet-ef
+  ```
+  Verify that it has been installed correctly by running
+  ``bash
+  dotnet ef
+  ```
+  You should get something that looks like this:
+  ```bash
+  _/\__
+               ---==/    \\
+         ___  ___   |.    \|\
+        | __|| __|  |  )   \\\
+        | _| | _|   \_/ |  //|\\
+        |___||_|       /   \\\/\\
+
+Entity Framework Core .NET Command-line Tools 2.1.3-rtm-32065
+
+<Usage documentation follows, not shown.>
+
+  ```
+  Now that you have installed this tool, you need to create a migration by running:
+  *Note: You´ll have to run this next two commands everytime you change a model to update the database.
+  ```bash
+  dotnet ef migrations add InitialMigration
+  ```
+ Now that you have a migration file, update the database.
+   ```bash
+    dotnet ef database update
+   ```
   #### 2.3. Set up Token Key
   To use authentication, you have to set a secret token key for JWT. To do that, run:
   ```bash
