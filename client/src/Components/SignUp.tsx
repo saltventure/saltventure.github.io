@@ -76,7 +76,7 @@ function SignUp({ updateUser }: Props) {
         };
 
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/users", requestSettings)
+            const response = await fetch("https://salt-venture.azurewebsites.net/api/users", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }

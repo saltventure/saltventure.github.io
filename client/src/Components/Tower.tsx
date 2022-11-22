@@ -93,7 +93,7 @@ function Tower({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/tower/pick/"+id, requestSettings)
+            const response = await fetch("https://salt-venture.azurewebsites.net/api/tower/pick/"+id, requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -167,7 +167,7 @@ function Tower({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/tower", requestSettings)
+            const response = await fetch("https://salt-venture.azurewebsites.net/api/tower", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -233,7 +233,7 @@ function Tower({ user, updateUser }: Props) {
 
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/tower", requestSettings)
+            const response = await fetch("https://salt-venture.azurewebsites.net/api/tower", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -282,7 +282,7 @@ function Tower({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/tower/cashout", requestSettings)
+            const response = await fetch("https://salt-venture.azurewebsites.net/api/tower/cashout", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }

@@ -46,7 +46,7 @@ function Profile({ user }: Props) {
             }
         };
         try {
-            const response = await fetch(`https://saltventure.azurewebsites.net/api/users/${idToSearch}`, requestSettings)
+            const response = await fetch(`https://salt-venture.azurewebsites.net/api/users/${idToSearch}`, requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }

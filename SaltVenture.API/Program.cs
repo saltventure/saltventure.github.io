@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connString = builder.Configuration.GetConnectionString("SaltVentureContext");
-connString = connString.Replace("<username>", builder.Configuration["DB_USERNAME"]);
+connString = connString!.Replace("<username>", builder.Configuration["DB_USERNAME"]);
 connString = connString.Replace("<password>", builder.Configuration["DB_PASSWORD"]);
 builder.Services.AddDbContext<SaltVentureDbContext>(options =>
     options.UseSqlServer(connString));
