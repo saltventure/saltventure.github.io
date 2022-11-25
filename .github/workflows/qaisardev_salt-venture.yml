@@ -3,6 +3,8 @@
 
 name: Build and deploy 
 
+name: Build and deploy ASP.Net Core app to Azure Web App - SaltVenture
+
 on:
   push:
     branches:
@@ -14,13 +16,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-          - name: Set up .NET Core
-          uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: '6.0.x'
-           include-prerelease: true
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          include-prerelease: true
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
@@ -38,7 +40,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'qaisardev'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
