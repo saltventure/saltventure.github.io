@@ -61,8 +61,7 @@ builder.Services.AddScoped<ITenziesRepository, TenziesRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 // JWT PART
 var tokenKey = builder.Configuration["TOKEN_KEY"];
-var key = Encoding.ASCII.GetBytes(tokenKey); 
-
+//var key = Encoding.ASCII.GetBytes(tokenKey);
 builder.Services.AddAuthentication(x =>
   {
       x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,7 +74,7 @@ builder.Services.AddAuthentication(x =>
           x.TokenValidationParameters = new TokenValidationParameters
           {
               ValidateIssuerSigningKey = true,
-              IssuerSigningKey = new SymmetricSecurityKey(key),
+              IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenKey)),
               ValidateIssuer = false,
               ValidateAudience = false
           };
