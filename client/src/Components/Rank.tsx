@@ -38,7 +38,7 @@ function Rank({ user }: Props) {
         };
         let url = usernameLike == undefined || usernameLike == "" ? "" : `?username=${usernameLike}`;
         try {
-            const response = await fetch(`https://salt-venture.azurewebsites.net/api/users/${url}`
+            const response = await fetch(`https://salt-ventures.azurewebsites.net/api/users/${url}`
                 , requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));

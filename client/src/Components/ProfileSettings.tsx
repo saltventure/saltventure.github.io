@@ -66,7 +66,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
         };
 
         try {
-            var response = await fetch("https://salt-venture.azurewebsites.net/api/users/" + user.id, requestSettings);
+            var response = await fetch("https://salt-ventures.azurewebsites.net/api/users/" + user.id, requestSettings);
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -108,7 +108,7 @@ function ProfileSettings({ user, logOut, updateUser }: Props) {
                 "Content-Type": "application/json"
             }
         };
-        await fetch("https://salt-venture.azurewebsites.net/api/users/", requestSettings);
+        await fetch("https://salt-ventures.azurewebsites.net/api/users/", requestSettings);
         logOut();
     }
 

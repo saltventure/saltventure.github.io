@@ -110,7 +110,7 @@ function Admin({ user, logout }: Props) {
             }
         };
         try {
-            const response = await fetch("https://salt-venture.azurewebsites.net/api/admin/"
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/admin/"
                 , requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));

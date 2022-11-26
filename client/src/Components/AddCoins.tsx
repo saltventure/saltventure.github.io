@@ -28,7 +28,7 @@ function AddCoins({ user, updateUser }: Props)  {
             }
         };
         try {
-            const response = await fetch("https://salt-venture.azurewebsites.net/api/saltnpepper/cashout", requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/saltnpepper/cashout", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
