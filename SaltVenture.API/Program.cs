@@ -61,7 +61,8 @@ builder.Services.AddScoped<ITenziesRepository, TenziesRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 // JWT PART
 var tokenKey = builder.Configuration["TOKEN_KEY"];
-var key = Encoding.ASCII.GetBytes(tokenKey); 
+var key = "be8Vw6jgL3ZzvzrZyQfx6Maq";
+//Encoding.ASCII.GetBytes(tokenKey); 
 
 builder.Services.AddAuthentication(x =>
   {
