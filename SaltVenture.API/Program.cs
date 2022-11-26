@@ -60,9 +60,8 @@ builder.Services.AddScoped<IBetsRepository, BetsRepository>();
 builder.Services.AddScoped<ITenziesRepository, TenziesRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 // JWT PART
-var tokenKey = builder.Configuration["TOKEN_KEY"];
-var key = "be8Vw6jgL3ZzvzrZyQfx6Maq";
-//Encoding.ASCII.GetBytes(tokenKey); 
+//var tokenKey = builder.Configuration["TOKEN_KEY"];
+var key = Encoding.ASCII.GetBytes("be8Vw6jgL3ZzvzrZyQfx6Maq"); 
 
 builder.Services.AddAuthentication(x =>
   {
