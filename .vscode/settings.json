@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ae6e5bee-5a20-427e-a437-ff38eb8cefc0/AppServices/subscriptions/ae6e5bee-5a20-427e-a437-ff38eb8cefc0/resourceGroups/saltVenturerg/providers/Microsoft.Web/sites/salt-ventures",
+    "appService.deploySubpath": "SaltVenture.API/obj"
+}
