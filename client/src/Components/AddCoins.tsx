@@ -8,7 +8,6 @@ interface Props {
         token: string | undefined,
     },
     updateUser: (user: User) => void;
-  
   }
   interface User {
     id: number | undefined,
