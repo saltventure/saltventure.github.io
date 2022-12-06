@@ -56,7 +56,7 @@ function Admin({ user, logout }: Props) {
             }
         };
         try {
-            const response = await fetch(`https://saltventure.azurewebsites.net/api/users/${id}`, requestSettings)
+            const response = await fetch(`https://salt-ventures.azurewebsites.net/api/users/${id}`, requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -88,7 +88,7 @@ function Admin({ user, logout }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/admin/delete/" + id
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/admin/delete/" + id
 
                 , requestSettings)
             if (!response.ok) {
@@ -110,7 +110,7 @@ function Admin({ user, logout }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/admin/"
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/admin/"
                 , requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));

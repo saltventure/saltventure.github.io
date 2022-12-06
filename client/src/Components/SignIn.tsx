@@ -61,7 +61,7 @@ function SignIn({updateUser}:Props) {
         };
 
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/users/login", requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/users/login", requestSettings)
             if(response.status == 404) 
             {
                 throw new Error(undefined);
