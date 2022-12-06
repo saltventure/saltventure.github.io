@@ -77,7 +77,7 @@ function SaltandPepper({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/saltnpepper", requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/saltnpepper", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -125,7 +125,7 @@ function SaltandPepper({ user, updateUser }: Props) {
             body: body
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/saltnpepper", requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/saltnpepper", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -166,7 +166,7 @@ function SaltandPepper({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/saltnpepper/pick/" + id, requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/saltnpepper/pick/" + id, requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }
@@ -219,7 +219,7 @@ function SaltandPepper({ user, updateUser }: Props) {
             }
         };
         try {
-            const response = await fetch("https://saltventure.azurewebsites.net/api/saltnpepper/cashout", requestSettings)
+            const response = await fetch("https://salt-ventures.azurewebsites.net/api/saltnpepper/cashout", requestSettings)
             if (!response.ok) {
                 throw new Error(JSON.stringify(await response.json()));
             }

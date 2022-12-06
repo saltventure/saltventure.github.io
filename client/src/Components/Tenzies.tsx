@@ -54,7 +54,7 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       }
   };
     try {
-        const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies", requestSettings)
+        const response = await fetch("https://salt-ventures.azurewebsites.net/api/tenzies", requestSettings)
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
@@ -102,7 +102,7 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       }
   };
     try {
-        const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies/pick/" + holding, requestSettings)
+        const response = await fetch("https://salt-ventures.azurewebsites.net/api/tenzies/pick/" + holding, requestSettings)
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
@@ -164,7 +164,7 @@ const Tenzies = ({ user, updateUser }: Props)=> {
       }
   };
     try {
-        const response = await fetch("https://saltventure.azurewebsites.net/api/tenzies/getreward", requestSettings)
+        const response = await fetch("https://salt-ventures.azurewebsites.net/api/tenzies/getreward", requestSettings)
         if (!response.ok) {
             throw new Error(JSON.stringify(await response.json()));
         }
