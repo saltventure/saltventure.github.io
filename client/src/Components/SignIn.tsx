@@ -152,7 +152,7 @@ function SignIn({updateUser}:Props) {
                     <FaApple /> Log In with Apple
                 </button>
             </div>
-            <p className='sign-up__link'>New Here? <Link to="/signup">Sign Up!</Link></p>
+            <p className='sign-up__link'> New Here? <Link to="/signup">Sign Up!</Link></p>
         </div>
     );
 }
